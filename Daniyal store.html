@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniyal Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: #1a1a1a;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      background: #333;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 14px 10px;
+      display: block;
+    }
+
+    nav ul li a:hover {
+      background: #555;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+      display: none;
+    }
+
+    #home {
+      display: block;
+      text-align: center;
+    }
+
+    .gallery-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .gallery-images img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .gallery-images img:hover {
+      transform: scale(1.05);
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    input[type="submit"] {
+      background-color: #1a1a1a;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #333;
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    .main-store-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Daniyal Store</h1>
+    <p>Where everything you need is under one roof!</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showSection('home')">Home</a></li>
+      <li><a href="#" onclick="showSection('about')">About</a></li>
+      <li><a href="#" onclick="showSection('products')">Products</a></li>
+      <li><a href="#" onclick="showSection('feedback')">Feedback</a></li>
+      <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome to Daniyal Store</h2>
+    <p>We offer a wide range of products including fashion, electronics, home goods, and more. Explore your life essentials in one place!</p>
+    <img class="main-store-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rk8KMwwV89FqY_NC0Yv8trI1i9xFvql6vg&s" alt="Store front image">
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Daniyal Store is inspired by world-class shopping malls. We believe in comfort, quality, and affordability for every customer. Visit us and feel the difference!</p>
+  </section>
+
+  <section id="products">
+    <h2>Featured Products</h2>
+    <div class="gallery-images">
+      <img src="https://images.unsplash.com/photo-1585386959984-a4155222f138?auto=compress&cs=tinysrgb&w=600" alt="Shoes">
+      <img src="https://images.unsplash.com/photo-1611605698993-1079c94ae5a7?auto=compress&cs=tinysrgb&w=600" alt="Glasses">
+      <img src="https://images.unsplash.com/photo-1600180758890-0fc3d0eeccaa?auto=compress&cs=tinysrgb&w=600" alt="Bags">
+      <img src="https://images.unsplash.com/photo-1600181958980-1d406e6ba859?auto=compress&cs=tinysrgb&w=600" alt="Watch">
+      <img src="https://images.unsplash.com/photo-1598032891648-85d1b2d3e7a2?auto=compress&cs=tinysrgb&w=600" alt="Clothing">
+      <img src="https://images.unsplash.com/photo-1612831193535-162bf4443f57?auto=compress&cs=tinysrgb&w=600" alt="Gadgets">
+      <img src="https://images.unsplash.com/photo-1585386959337-936a889cbb72?auto=compress&cs=tinysrgb&w=600" alt="Perfume">
+      <img src="https://images.unsplash.com/photo-1617019114583-9faea8d6ea33?auto=compress&cs=tinysrgb&w=600" alt="Makeup">
+      <img src="https://images.unsplash.com/photo-1606813902529-7f3882216900?auto=compress&cs=tinysrgb&w=600" alt="Home Goods">
+    </div>
+  </section>
+
+  <section id="feedback">
+    <h2>Send Us Your Feedback</h2>
+    <form onsubmit="submitFeedback(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Feedback..." required></textarea>
+      <input type="submit" value="Submit Feedback">
+    </form>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@daniyalstore.com</p>
+    <p>Phone: +92 3040006169</p>
+    <p>Location: Main Bazar, Sadiq Abad, Pakistan</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Daniyal Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Show only selected section
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.style.display = (sec.id === id) ? 'block' : 'none';
+      });
+    }
+
+    // Dummy feedback submit
+    function submitFeedback(e) {
+      e.preventDefault();
+      alert('Thank you for your feedback!');
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniyal Shahzad - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      const text = "I'm Daniyal Shahzad, a passionate beginner developer.";
+      let index = 0;
+      const typingTarget = document.getElementById("typing-text");
+      function typeText() {
+        if (index < text.length) {
+          typingTarget.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeText, 50);
+        }
+      }
+      typeText();
+      startSkillLoop();
+      initStars();
+      startSectionRepeat();
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('dark-mode') === 'true') {
+        document.body.classList.add('dark-mode');
+      }
+    }
+
+    const skills = ["HTML", "CSS", "JavaScript", "Basic Java", "Responsive Design", "Git", "Bootstrap"];
+    let skillIndex = 0;
+    function startSkillLoop() {
+      const skillDisplay = document.getElementById("skill-rotate");
+      if (!skillDisplay) return;
+      setInterval(() => {
+        skillDisplay.textContent = skills[skillIndex];
+        skillIndex = (skillIndex + 1) % skills.length;
+      }, 1000);
+    }
+
+    function initStars() {
+      const canvas = document.getElementById("stars-bg");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const stars = Array.from({ length: 100 }).map(() => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(s => {
+          s.x += s.dx;
+          s.y += s.dy;
+          if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+          if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+          ctx.fillStyle = "white";
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    function startSectionRepeat() {
+      const sections = document.querySelectorAll("section h2");
+      setInterval(() => {
+        sections.forEach(sec => {
+          sec.classList.add("highlight");
+          setTimeout(() => sec.classList.remove("highlight"), 500);
+        });
+      }, 1000);
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #111010;
+      color: #530606;
+    }
+    canvas#stars-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    header {
+      background: linear-gradient(to right, #0077cc, #004466);
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+    nav ul li {
+      display: inline-block;
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.5s, transform 0.5s;
+    }
+    section:nth-child(even) {
+      background-color: #f0f9ff;
+    }
+    section:hover {
+      background-color: #e8f4fc;
+      transform: scale(1.01);
+    }
+    .highlight {
+      color: #0077cc;
+      text-shadow: 0 0 10px #0077cc;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    .dark-mode header,
+    .dark-mode footer {
+      background-color: #1e1e1e;
+    }
+    .toggle-dark-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: #0077cc;
+      color: #000000;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 999;
+    }
+    .project-card {
+      background-color: black;
+      border: 1px solid #0077cc;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .dark-mode .project-card {
+      background-color: #222;
+      border-color: #555;
+    }
+    #skill-rotate {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #0077cc;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars-bg"></canvas>
+  <button class="toggle-dark-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <header>
+    <h1>Daniyal Shahzad</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h2>Welcome to My Portfolio</h2>
+    <p id="typing-text"></p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a beginner student learning Computer Science. I love web development and design.</p>
+  </section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="project-card">
+      <h3>Calculator</h3>
+      <p>A simple calculator built using HTML, CSS, and JavaScript.</p>
+    </div>
+    <div class="project-card">
+      <h3>To-Do List App</h3>
+      <p>A basic app to manage daily tasks.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>My Skills</h2>
+    <p id="skill-rotate">HTML</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: daniyal@example.com</p>
+    <p>Phone: +92-3040006169</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Daniyal Shahzad</p>
+  </footer>
+</body>
+</html>
